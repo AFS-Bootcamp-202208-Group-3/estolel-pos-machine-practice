@@ -10,7 +10,15 @@ import java.util.stream.Collectors;
 public class PosMachine {
     public String printReceipt(List<String> barcodes) {
         List<ReceiptItem> receiptItems = decodeToItems(barcodes);
+        int cost = calculateCost(receiptItems);
         return null;
+    }
+
+    private int calculateCost(List<ReceiptItem> receiptItems) {
+        //I omitted "calculateItemsCost" because it was already done during decodeToItems() method
+        return receiptItems.stream().mapToInt(receiptItem -> {
+            return receiptItem.subTotal;
+        }).sum();
     }
 
     List<ReceiptItem> decodeToItems(List<String> barcodes) {
