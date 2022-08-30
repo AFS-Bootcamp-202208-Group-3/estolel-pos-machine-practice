@@ -10,13 +10,33 @@ import java.util.stream.Collectors;
 public class PosMachine {
     public String printReceipt(List<String> barcodes) {
         List<ReceiptItem> receiptItems = decodeToItems(barcodes);
-        int cost = calculateCost(receiptItems);
+        Receipt receipt = calculateCost(receiptItems);
+        String  receiptString = renderReceipt(receipt);
         return null;
     }
 
-    private int calculateCost(List<ReceiptItem> receiptItems) {
+    private String renderReceipt(Receipt receipt) {
+        String itemsReceipt = generateItemsReceipt(receipt);
+//        String receiptString = generateReceipt;
+
+
+        return receiptString;
+    }
+
+    private String generateItemsReceipt(Receipt receipt) {
+        String itemsReceipt ="";
+//        "Name: Coca-Cola, Quantity: 4, Unit price: 3 (yuan), Subtotal: 12 (yuan)\n"
+        receipt.receiptItemList.stream().map(receiptItem -> {
+           return itemsReceipt.concat("Name: "+receiptItem.name+", Quantity: "+receiptItem.quantity+", Unit price: "+
+                    receiptItem.unitPrice+" (yuan), Subtotal: "+receiptItem.subTotal+" (yuan)\n");
+        }).collect(Collectors.joining());
+        return itemsReceipt;
+    }
+
+    private Receipt calculateCost(List<ReceiptItem> receiptItems) {
         //I omitted "calculateItemsCost" because it was already done during decodeToItems() method
-        return calculateTotalPrice(receiptItems);
+        Receipt receipt = new Receipt(receiptItems, calculateTotalPrice(receiptItems));
+        return receipt;
     }
 
     private static int calculateTotalPrice(List<ReceiptItem> receiptItems) {
