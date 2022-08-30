@@ -31,7 +31,6 @@ public class PosMachine {
     private String generateItemsReceipt(Receipt receipt) {
         String itemsReceipt ="";
         String finalItemsReceipt = "";
-//        "Name: Coca-Cola, Quantity: 4, Unit price: 3 (yuan), Subtotal: 12 (yuan)\n"
         finalItemsReceipt = receipt.receiptItemList.stream().map(receiptItem -> {
            return itemsReceipt.concat("Name: "+receiptItem.name+", Quantity: "+receiptItem.quantity+", Unit price: "+
                     receiptItem.unitPrice+" (yuan), Subtotal: "+receiptItem.subTotal+" (yuan)\n");
@@ -40,7 +39,7 @@ public class PosMachine {
     }
 
     private Receipt calculateCost(List<ReceiptItem> receiptItems) {
-        //I omitted "calculateItemsCost" because it was already done during decodeToItems() method
+        //TODO: I omitted "calculateItemsCost" because it was already done during decodeToItems() method
         Receipt receipt = new Receipt(receiptItems, calculateTotalPrice(receiptItems));
         return receipt;
     }
