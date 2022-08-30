@@ -12,25 +12,31 @@ public class PosMachine {
         List<ReceiptItem> receiptItems = decodeToItems(barcodes);
         Receipt receipt = calculateCost(receiptItems);
         String  receiptString = renderReceipt(receipt);
-        return null;
+        return receiptString;
     }
 
     private String renderReceipt(Receipt receipt) {
         String itemsReceipt = generateItemsReceipt(receipt);
-//        String receiptString = generateReceipt;
+        String receiptString = generateReceipt(itemsReceipt, receipt.totalPrice);
+        return receiptString;
+    }
 
-
-        return itemsReceipt;
+    private String generateReceipt(String itemsReceipt, int totalPrice) {
+        return "***<store earning no money>Receipt***\n" +itemsReceipt+
+                "----------------------\n" +
+                "Total: "+totalPrice+" (yuan)\n" +
+                "**********************";
     }
 
     private String generateItemsReceipt(Receipt receipt) {
         String itemsReceipt ="";
+        String finalItemsReceipt = "";
 //        "Name: Coca-Cola, Quantity: 4, Unit price: 3 (yuan), Subtotal: 12 (yuan)\n"
-        receipt.receiptItemList.stream().map(receiptItem -> {
+        finalItemsReceipt = receipt.receiptItemList.stream().map(receiptItem -> {
            return itemsReceipt.concat("Name: "+receiptItem.name+", Quantity: "+receiptItem.quantity+", Unit price: "+
                     receiptItem.unitPrice+" (yuan), Subtotal: "+receiptItem.subTotal+" (yuan)\n");
         }).collect(Collectors.joining());
-        return itemsReceipt;
+        return finalItemsReceipt;
     }
 
     private Receipt calculateCost(List<ReceiptItem> receiptItems) {
