@@ -15,13 +15,13 @@ public class PosMachine {
         return null;
     }
 
-    private String renderReceipt(Receipt receipt) {
-        String itemsReceipt = generateItemsReceipt(receipt);
+//    private String renderReceipt(Receipt receipt) {
+//        String itemsReceipt = generateItemsReceipt(receipt);
 //        String receiptString = generateReceipt;
-
-
-        return receiptString;
-    }
+//
+//
+//        return receiptString;
+//    }
 
     private String generateItemsReceipt(Receipt receipt) {
         String itemsReceipt ="";
