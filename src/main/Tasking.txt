@@ -1,0 +1,37 @@
+1. Generate Receipt
+   -Input
+		-barcode : String[]
+	-Output
+		-receipt : String
+2. Get items from database
+	-Input
+		-barcode : String[]
+	-Output
+		-itemObject : Object
+	2.1 Convert objects into string and format them
+		2.1.1 Convert objects to string
+			-Input
+				-itemObject : Class
+			-Output
+				-itemString : String
+		2.1.2 Format string
+			-Input
+				-itemString : String
+			-Output
+				-formattedItemString : String
+	2.2 Compile the formatted strings of items and return the list
+		-Input
+			-formattedItemString : String
+		-Output
+			-formattedItemStringList : String[]
+	
+3. Print receipt 
+	-Input
+		-formattedItemStringList : String[]
+	-Output
+		-receipt : String
+	3.1 Format Receipt
+		-Input:
+			-formattedItemStringList : String[]
+		-Output:
+			-receipt : String
