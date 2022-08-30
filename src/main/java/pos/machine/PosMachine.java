@@ -16,6 +16,10 @@ public class PosMachine {
 
     private int calculateCost(List<ReceiptItem> receiptItems) {
         //I omitted "calculateItemsCost" because it was already done during decodeToItems() method
+        return calculateTotalPrice(receiptItems);
+    }
+
+    private static int calculateTotalPrice(List<ReceiptItem> receiptItems) {
         return receiptItems.stream().mapToInt(receiptItem -> {
             return receiptItem.subTotal;
         }).sum();
